@@ -9,13 +9,11 @@ function Drinks() {
   //cargamos el localstorage
   let localStorageJSON = localStorage.getItem("Carrito");
   let storedItems = [];
-  if (localStorageJSON !== null) {
-    storedItems = JSON.parse(localStorageJSON);
+  if(localStorageJSON!==null) {
+       storedItems = JSON.parse(localStorageJSON); 
   }
   let suma = 0;
-  storedItems.forEach((ele) => {
-    suma += ele.precio;
-  });
+  storedItems.forEach(ele => {suma+=ele.precio});
 
   const [originalDrinks, setOriginalDrinks] = useState([]); // Mantén una copia original de los productos
   const [drinks, setDrinks] = useState([]);
@@ -37,10 +35,10 @@ function Drinks() {
         }
         const data = await response.json();
         console.log("Respuesta de la API de productos:", data);
-
+  
         // Filtra los productos por la propiedad active antes de asignarlos
         const filteredDrinks = data.filter((drink) => drink.active === 1);
-
+  
         setOriginalDrinks(filteredDrinks); // Actualiza la copia original de los productos
         setDrinks(filteredDrinks); // Inicialmente muestra solo productos activos
       } catch (error) {
@@ -65,16 +63,18 @@ function Drinks() {
 
   const handleLineaChange = (linea) => {
     console.log("Línea seleccionada:", linea);
-
+  
     // Lógica para filtrar por línea
     const filteredDrinks = originalDrinks.filter(
-      (drink) => drink.linea_id == linea || linea === "Todas las líneas"
+      (drink) =>
+        drink.linea_id == linea || linea === "Todas las líneas"
     );
-
+  
     // Actualiza el estado solo cuando haya una selección
     setDrinks(filteredDrinks);
     setSelectedLinea(linea); // Agrega esta línea para mantener la pista de la línea seleccionada
   };
+  
 
   function eliminarTrago(trago) {
     const eliminarTragoSelec = selectedDrinks.filter(
@@ -86,10 +86,10 @@ function Drinks() {
     setSumaPrecios((prevSumaPrecios) => prevSumaPrecios - trago.precio);
     let localStorageJSON = localStorage.getItem("Carrito");
     let storedItems = [];
-    if (localStorageJSON !== null) {
-      storedItems = JSON.parse(localStorageJSON);
+    if(localStorageJSON!==null) {
+       storedItems = JSON.parse(localStorageJSON); 
     }
-    const array = storedItems.filter((ele) => ele.registro !== trago.registro);
+    const array = storedItems.filter((ele)=> ele.registro !== trago.registro);
     const updatedItemsJSON = JSON.stringify(array);
     localStorage.setItem("Carrito", updatedItemsJSON);
   }
@@ -105,23 +105,18 @@ function Drinks() {
 
   function guardarTrago(trago) {
     let nreg = 0;
-    selectedDrinks.forEach((ele) => {
-      nreg = ele.registro;
+    selectedDrinks.forEach(ele =>{
+       nreg = ele.registro;
     });
     nreg++;
-    const newTrago = {
-      registro: nreg,
-      id: trago.id,
-      name: trago.name,
-      impuesto: trago.impuesto,
-      precio: trago.precio,
-      costo: trago.costo,
-    };
+    const newTrago = {registro: nreg,
+                      id: trago.id,
+                      name: trago.name,
+                      impuesto: trago.impuesto,
+                      precio: trago.precio,
+                      costo: trago.costo}
 
-    setSelectedDrinks((prevSelectedDrinks) => [
-      ...prevSelectedDrinks,
-      newTrago,
-    ]);
+    setSelectedDrinks((prevSelectedDrinks) => [...prevSelectedDrinks, newTrago]);
     setConteo((prev) => prev + 1);
     setSumaPrecios((prev) => prev + trago.precio);
     addLocalStorage(newTrago);
@@ -130,23 +125,21 @@ function Drinks() {
   const addLocalStorage = (trago) => {
     let localStorageJSON = localStorage.getItem("Carrito");
     let storedItems = [];
-    if (localStorageJSON !== null) {
-      storedItems = JSON.parse(localStorageJSON);
+    if(localStorageJSON!==null) {
+       storedItems = JSON.parse(localStorageJSON); 
     }
-    const nitem = {
-      registro: trago.registro,
-      id: trago.id,
-      name: trago.name,
-      impuesto: trago.impuesto,
-      precio: trago.precio,
-      cantidad: 1,
-      costo: trago.costo,
-    };
+    const nitem = {registro: trago.registro,
+                   id: trago.id,
+                   name: trago.name,
+                   impuesto: trago.impuesto,
+                   precio: trago.precio,
+                   cantidad: 1,
+                   costo: trago.costo}   
     storedItems.push(nitem);
     const updatedItemsJSON = JSON.stringify(storedItems);
     localStorage.setItem("Carrito", updatedItemsJSON);
     console.log(storedItems);
-  };
+ };
 
   return (
     <div className="grid grid-cols-3 h-[80%]">
@@ -160,34 +153,29 @@ function Drinks() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             ></input>
-            {lineas && lineas.length > 0 && (
-              <select
-                id="linea_id"
-                {...register("linea_id", { required: true })}
-                onChange={(e) => handleLineaChange(e.target.value)}
-                className="mt-1 p-2 w-full border rounded-md"
-              >
-                <option value="Todas las líneas">Todas las líneas</option>
-                {lineas.map((linea) => (
-                  <option key={linea.id} value={linea.id}>
-                    {linea.name}
-                  </option>
-                ))}
-              </select>
-            )}
+            <select
+              id="linea_id"
+              {...register("linea_id", { required: true })}
+              onChange={(e) => handleLineaChange(e.target.value)}
+              className="mt-1 p-2 w-full border rounded-md"
+            >
+              <option value="Todas las líneas">Todas las líneas</option>
+              {lineas.map((linea) => (
+                <option key={linea.id} value={linea.id}>
+                  {linea.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="grid grid-cols-3 overflow-y-auto">
           {drinks
             .filter((drink) => {
               const matchesLinea =
-                selectedLinea === "Todas las líneas" ||
-                drink.linea_id == selectedLinea;
-
-              const matchesSearchTerm = drink.name
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase());
-
+                selectedLinea === "Todas las líneas" || drink.linea_id == selectedLinea;
+        
+              const matchesSearchTerm = drink.name.toLowerCase().includes(searchTerm.toLowerCase());
+        
               return matchesLinea && matchesSearchTerm;
             })
             .map((drink, index) => (
