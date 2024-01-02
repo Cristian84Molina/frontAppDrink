@@ -1,0 +1,78 @@
+[
+    {
+      "nombre": "Margarita",
+      "ingredientes": ["Tequila", "Triple sec", "Jugo de limón", "Sal"],
+      "preparacion": "Moja el borde del vaso en sal. Mezcla el tequila, triple sec y jugo de limón con hielo. Sirve en el vaso preparado.",
+      "imagen": "https://img.freepik.com/foto-gratis/coctel-helado-rojo-sobre-mesa_140725-9712.jpg?w=360&t=st=1702170889~exp=1702171489~hmac=9776b01bb212aaf64eec87a97ca21f7e4e524e5c8a3f4def0ed3c80a3d2f6eef",
+      "precio": 1900
+    },
+    {
+      "nombre": "Piña Colada",
+      "ingredientes": ["Ron blanco", "Crema de coco", "Jugo de piña", "Hielo"],
+      "preparacion": "Mezcla el ron blanco, crema de coco y jugo de piña con hielo. Sirve en un vaso alto.",
+      "imagen": "https://img.freepik.com/foto-gratis/coctel-helado-rojo-sobre-mesa_140725-9712.jpg?w=360&t=st=1702170889~exp=1702171489~hmac=9776b01bb212aaf64eec87a97ca21f7e4e524e5c8a3f4def0ed3c80a3d2f6eef",
+      "precio": 1000
+    },
+    {
+      "nombre": "Mojito",
+      "ingredientes": [
+        "Ron blanco",
+        "Menta fresca",
+        "Azúcar",
+        "Jugo de lima",
+        "Agua con gas",
+        "Hielo"
+      ],
+      "preparacion": "Mezcla menta, azúcar y jugo de lima en un vaso. Agrega hielo y ron blanco. Completa con agua con gas.",
+      "imagen": "https://img.freepik.com/foto-gratis/coctel-helado-rojo-sobre-mesa_140725-9712.jpg?w=360&t=st=1702170889~exp=1702171489~hmac=9776b01bb212aaf64eec87a97ca21f7e4e524e5c8a3f4def0ed3c80a3d2f6eef",
+      "precio": 1500
+    },
+    {
+      "nombre": "Martini",
+      "ingredientes": ["Gin", "Vermú seco", "Aceituna"],
+      "preparacion": "Mezcla gin y vermú seco en un agitador con hielo. Sirve en una copa de martini y decora con una aceituna.",
+      "imagen": "https://img.freepik.com/foto-gratis/coctel-helado-rojo-sobre-mesa_140725-9712.jpg?w=360&t=st=1702170889~exp=1702171489~hmac=9776b01bb212aaf64eec87a97ca21f7e4e524e5c8a3f4def0ed3c80a3d2f6eef",
+      "precio": 1800
+    },
+    {
+      "nombre": "Daiquiri",
+      "ingredientes": [
+        "Ron blanco",
+        "Jugo de limón",
+        "Jarabe de azúcar",
+        "Hielo"
+      ],
+      "preparacion": "Mezcla el ron blanco, jugo de limón y jarabe de azúcar con hielo. Sirve en una copa de cóctel.",
+      "imagen": "https://img.freepik.com/foto-gratis/coctel-helado-rojo-sobre-mesa_140725-9712.jpg?w=360&t=st=1702170889~exp=1702171489~hmac=9776b01bb212aaf64eec87a97ca21f7e4e524e5c8a3f4def0ed3c80a3d2f6eef",
+      "precio": 1200
+    },
+    {
+      "nombre": "Negroni",
+      "ingredientes": ["Gin", "Vermú rojo", "Campari", "Rodaja de naranja"],
+      "preparacion": "Mezcla gin, vermut rojo y Campari en un vaso con hielo. Decora con una rodaja de naranja.",
+      "imagen": "https://img.freepik.com/foto-gratis/coctel-helado-rojo-sobre-mesa_140725-9712.jpg?w=360&t=st=1702170889~exp=1702171489~hmac=9776b01bb212aaf64eec87a97ca21f7e4e524e5c8a3f4def0ed3c80a3d2f6eef",
+      "precio": 1600
+    },
+    {
+      "nombre": "Mai Tai",
+      "ingredientes": [
+        "Ron oscuro",
+        "Ron blanco",
+        "Curacao naranja",
+        "Almendra",
+        "Jugo de limón",
+        "Jarabe de almendra",
+        "Hielo"
+      ],
+      "preparacion": "Mezcla los rones, curacao naranja, almendra, jugo de limón y jarabe de almendra con hielo. Sirve en un vaso alto.",
+      "imagen": "https://img.freepik.com/foto-gratis/coctel-helado-rojo-sobre-mesa_140725-9712.jpg?w=360&t=st=1702170889~exp=1702171489~hmac=9776b01bb212aaf64eec87a97ca21f7e4e524e5c8a3f4def0ed3c80a3d2f6eef",
+      "precio": 2000
+    },
+    {
+      "nombre": "Caipirinha",
+      "ingredientes": ["Cachaça", "Limón", "Azúcar", "Hielo"],
+      "preparacion": "Corta limones en trozos, agrega azúcar y machaca. Agrega cachaça y hielo. Revuelve bien.",
+      "imagen": "https://img.freepik.com/foto-gratis/coctel-helado-rojo-sobre-mesa_140725-9712.jpg?w=360&t=st=1702170889~exp=1702171489~hmac=9776b01bb212aaf64eec87a97ca21f7e4e524e5c8a3f4def0ed3c80a3d2f6eef",
+      "precio": 2300
+    }
+  ]

@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos normales para la pantalla */
+.table-container {
+    max-width: 900px;
+    overflow: auto;
+  }
+  
+  /* Estilos específicos para la impresión */
+  @media print {
+    body {
+      font-size: 10px; /* Ajusta el tamaño de la fuente para que se ajuste a la impresión */
+    }
+  
+    .table-container {
+      max-width: 58mm; /* Ajusta el ancho a 58mm para la impresora térmica */
+      overflow: hidden; /* Evita que el contenido se desborde en la impresión */
+    }
+  }
+  
