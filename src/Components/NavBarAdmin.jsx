@@ -7,7 +7,7 @@ const NavBarAdmin = ({ userRole }) => {
   return (
     <nav className="bg-black p-4 flex justify-between items-center">
       <h1 className="font-fredericka text-white text-xl md:text-4xl  p-4">
-        Drinks App Administrador
+        Drinks App 
       </h1>
       {location.pathname === "/home" && (
         <>
