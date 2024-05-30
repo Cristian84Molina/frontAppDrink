@@ -193,6 +193,19 @@ function Drinks() {
     console.log(storedItems);
   };
 
+  // Ordenar los drinks alfabéticamente, poniendo primero aquellos que comiencen con un número
+  const sortedDrinks = drinks.sort((a, b) => {
+    const nameA = a.name;
+    const nameB = b.name;
+
+    const isNumA = !isNaN(parseInt(nameA[0]));
+    const isNumB = !isNaN(parseInt(nameB[0]));
+
+    if (isNumA && !isNumB) return -1;
+    if (!isNumA && isNumB) return 1;
+    return nameA.localeCompare(nameB, 'en', { numeric: true });
+  });
+
   return (
     <div className="grid grid-cols-3 h-[80%]">
       <div className="col-span-2 bg-white h-[100%] rounded-[50px] m-4 flex flex-col justify-start max-w-[900px] overflow-hidden">
@@ -255,7 +268,7 @@ function Drinks() {
                   </button>
                 </div>
               ))
-            : drinks.map((drink, index) => (
+            : sortedDrinks.map((drink, index) => (
                 <div key={index} className="m-3">
                   <button
                     onClick={() => {
