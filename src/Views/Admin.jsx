@@ -12,12 +12,18 @@ const Admin = () => {
   const rutaPpal = useSelector((state) => state.rutaReducer.rutaPrincipal);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = productos.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  const currentProducts = productos.slice(indexOfFirstProduct, indexOfLastProduct);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const [selectedProductId, setSelectedProductId] = useState(null);
+
+  const colorMap = {
+    1: "bg-red-200",
+    2: "bg-green-200",
+    3: "bg-blue-200",
+    4: "bg-yellow-200",
+    5: "bg-violet-200"
+    // Añadir más colores según sea necesario
+  };
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -27,13 +33,17 @@ const Admin = () => {
           throw new Error("Error al obtener los productos");
         }
         const data = await response.json();
-        setProductos(data);
+        // Ordenar los productos alfabéticamente por nombre
+        const sortedProducts = data.sort((a, b) =>
+          a.name.localeCompare(b.name, "en", { numeric: true })
+        );
+        setProductos(sortedProducts);
       } catch (error) {
         console.error(error);
       }
     };
     fetchProductos();
-  }, []);
+  }, [rutaPpal]);
 
   const handleModificar = (id) => {
     console.log("ID seleccionado en handleModificar:", id);
@@ -72,36 +82,31 @@ const Admin = () => {
               )
             )}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-            {currentProducts
-              .sort((a, b) => a.linea_id - b.linea_id)
-              .map((producto) => (
-                <div
-                  key={producto.id}
-                  className="bg-white p-4 shadow-md rounded-md flex"
-                >
-                  <img
-                    src={producto.image}
-                    alt={producto.name}
-                    className="mr-4 rounded-md h-16 w-16 object-cover"
-                  />
-                  <div>
-                    <a
-                      href="#"
-                      className={`text-xl font-semibold mb-2 hover:underline ${
-                        producto.active === 0 ? "text-red-500" : "text-blue-500"
-                      }`}
-                      onClick={() => handleModificar(producto.id)}
-                    >
-                      {producto.name}
-                    </a>
-                    <p className="text-gray-700">{producto.preparacion}</p>
-                    <p className="text-green-600 font-semibold mt-2">
-                      ${producto.precioventa}
-                    </p>
-                  </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {currentProducts.map((producto) => (
+              <div
+                key={producto.id}
+                className={`p-4 shadow-md rounded-md flex flex-col w-48 h-32 ${colorMap[producto.linea_id]}`}
+              >
+                <div className="flex-1 overflow-hidden">
+                  <a
+                    href="#"
+                    className={`text-xl font-semibold mb-2 hover:underline block truncate ${
+                      producto.active === 0 ? "text-red-500" : "text-blue-500"
+                    }`}
+                    onClick={() => handleModificar(producto.id)}
+                  >
+                    {producto.name}
+                  </a>
+                  <p className="text-gray-700 truncate">
+                    {producto.preparacion}
+                  </p>
                 </div>
-              ))}
+                <p className="text-green-600 font-semibold mt-2">
+                  ${producto.precioventa}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -114,7 +119,11 @@ const Admin = () => {
             axios
               .get(`${rutaPpal}productos`)
               .then((response) => {
-                setProductos(response.data);
+                // Ordenar los productos alfabéticamente por nombre después de la actualización
+                const sortedProducts = response.data.sort((a, b) =>
+                  a.name.localeCompare(b.name, "en", { numeric: true })
+                );
+                setProductos(sortedProducts);
               })
               .catch((error) => {
                 console.error("Error fetching data:", error);
